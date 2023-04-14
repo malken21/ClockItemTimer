@@ -1,0 +1,2 @@
+# Minecraft_ClockItemTimer_Spigot
+時計というアイテムを使って時間を計測できるようにするSpigotプラグイン
