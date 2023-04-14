@@ -1,0 +1,4 @@
+name: ClockItemTimer
+version: '${version}'
+main: marumasa.clock_item_timer.minecraft
+api-version: 1.19
