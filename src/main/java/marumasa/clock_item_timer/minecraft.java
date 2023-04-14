@@ -6,7 +6,7 @@ public final class minecraft extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new Events(), this);
+        getServer().getPluginManager().registerEvents(new Events(new Config(this)), this);
     }
 
     @Override
