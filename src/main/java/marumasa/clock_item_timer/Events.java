@@ -1,5 +1,6 @@
 package marumasa.clock_item_timer;
 
+import marumasa.clock_item_timer.config.Config;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,16 +14,13 @@ import java.util.List;
 public class Events implements Listener {
 
     private final Config cfg;
+    private final minecraft mc;
 
     private static final ItemStack clock = new ItemStack(Material.CLOCK);
 
-    private ItemMeta setLore(ItemMeta meta) {
-        meta.setLore(cfg.lore);
-        return meta;
-    }
-
-    public Events(Config config) {
+    public Events(Config config, minecraft minecraft) {
         cfg = config;
+        mc = minecraft;
 
         final ItemMeta itemMeta = clock.getItemMeta();
         if (itemMeta == null) return;
@@ -49,9 +47,9 @@ public class Events implements Listener {
 
             final Action action = event.getAction();
             if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
-                Timer.Reset(event.getPlayer());
+                Timer.Reset(event.getPlayer(), cfg.message);
             } else if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
-                Timer.Start_Stop(event.getPlayer());
+                Timer.Start_Stop(event.getPlayer(), cfg.message, mc);
             }
         }
     }
