@@ -2,7 +2,9 @@ package marumasa.clock_item_timer;
 
 import marumasa.clock_item_timer.config.Message;
 import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -16,6 +18,7 @@ public class Timer {
         String time = toText(message.timer, playerData.timer);
         TextComponent textComponent = new TextComponent(String.format(text, time));
         textComponent.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, time));
+        textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(message.copy)));
         return textComponent;
     }
 
