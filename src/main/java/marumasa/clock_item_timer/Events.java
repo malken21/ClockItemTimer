@@ -30,14 +30,20 @@ public class Events implements Listener {
     @EventHandler
     private void onPlayerInteract(PlayerInteractEvent event) {
 
+        // Get Item
         final ItemStack itemStack = event.getItem();
         if (itemStack == null) return;
 
+        // Is not Clock
+        if (!itemStack.getType().equals(Material.CLOCK)) return;
+
+        // Get Meta
         final ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) return;
 
         final List<String> lore = itemMeta.getLore();
 
+        // if lore Null
         if (lore == null) {
 
             itemMeta.setLore(cfg.lore);
