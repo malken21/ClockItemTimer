@@ -41,16 +41,18 @@ public class Events implements Listener {
         final ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) return;
 
+        if (itemMeta.equals(clock.getItemMeta())) {
+            // set lore
+            itemMeta.setLore(cfg.lore);
+            itemStack.setItemMeta(itemMeta);
+        }
+
         final List<String> lore = itemMeta.getLore();
 
         // if lore Null
-        if (lore == null) {
+        if (lore == null) return;
 
-            itemMeta.setLore(cfg.lore);
-            itemStack.setItemMeta(itemMeta);
-
-        } else if (lore.equals(cfg.lore)) {
-
+        if (lore.equals(cfg.lore)) {
             final Action action = event.getAction();
             if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
                 Timer.Reset(event.getPlayer(), cfg.message);
